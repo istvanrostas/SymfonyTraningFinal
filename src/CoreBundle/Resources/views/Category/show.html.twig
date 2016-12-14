@@ -1,0 +1,37 @@
+{% extends "CoreBundle::layout.html.twig" %}
+
+{% block title %}JobZ{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+    <div id="jobs">
+
+        <div class="category_{{ category.name }}">
+            <div class="category">
+                <h1>
+                    <a href="category.html">{{ category.name }}</a>
+                </h1>
+            </div>
+            <table class="jobs">
+                <tbody>
+                {% for job in cat.jobs  %}
+                    <tr class="odd">
+                        <td class="location">
+                            {{ job.location }}
+                        </td>
+                        <td class="position">
+                            <a href="job.html">{{ job.position }}</a>
+                        </td>
+                        <td class="company">
+                            {{ job.company }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}
