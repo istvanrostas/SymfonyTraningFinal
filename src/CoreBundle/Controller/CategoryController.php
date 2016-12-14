@@ -18,6 +18,15 @@ class CategoryController extends Controller
 
 
 
+        $jobs = $this->getDoctrine()->getRepository('CoreBundle:Job')->findBy(
+            [
+                'category' => $category
+            ],
+            [
+                 'createdAt' => 'ASC'
+            ]
+        );
+
         return $this->render('CoreBundle:Category:show.html.twig', array(
             'category' => $category
         ));
