@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function showAction($name)
     {
-        $category = $this->getDoctrine()->getRepository('CoreBundle:Category')->findBy([
+        $category = $this->getDoctrine()->getRepository('CoreBundle:Category')->findOneBy([
             'name' => $name
         ]);
 
