@@ -17,6 +17,28 @@ class JobRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(10)->getQuery()->getResult();
     }
 
+    public function searchForJob($keywords)
+    {
+        $keywords = explode(" ", $keywords);
+        $qb = $this->getQueryBuilder();
+
+
+
+        $condition = "CONCAT(j.location, j.position, j.company, c.name) LIKE :word";
+
+        $qb->join('j.category','c')
+            ->where($condition)
+            ->setParameter('word', '%' . array_pop($keywords) . '%');
+
+
+        foreach ($keywords as $keyword){
+            $qb->orWhere($condition)->setParameter('word','%' . $keyword . '%');
+        }
+
+        return $qb->getQuery()->getResult();
+
+    }
+
 
 
     private function getQueryBuilder()

@@ -23,7 +23,7 @@ class CategoryController extends Controller
                 'category' => $category
             ],
             [
-                 'createdAt' => 'ASC'
+                 'createdAt' => 'DESC'
             ]
         );
 

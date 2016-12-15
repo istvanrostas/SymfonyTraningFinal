@@ -28,7 +28,7 @@
 
         <div class="content">
             <h1>
-                <a href="index.html"><img src="images/jobz.gif"></a>
+                <a href="index.html"><img src="{{ asset('bundles/core/images/jobz.gif') }}"></a>
             </h1>
             <div id="sub_header">
                 <div class="post">
@@ -40,13 +40,13 @@
                     </div>
                 </div>
                 <div class="search">
-                    <img src="images/ask.png" alt="ask">
+                    <img src="{{ asset('bundles/core/images/ask.png') }}" alt="ask">
                     <h2>
                         Ask for a job
                     </h2>
-                    <form action="" method="get">
+                    <form action="{{ path('core_job_search') }}" method="get">
                         <input name="keywords" id="search_keywords" class="input" type="text"><input value="search"
-                                                                                                     src="images/search.png"
+                                                                                                     src="{{ asset('bundles/core/images/search.png') }}"
                                                                                                      class="but_search"
                                                                                                      type="image">
                         <div class="help">

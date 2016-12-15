@@ -6,22 +6,22 @@
 
 <div class="content">
     <div id="jobs">
-        {% for k,v in jobsByCat %}
-        <div class="category_{{ k }}">
+        {% for catName,jobs in jobsByCat %}
+        <div class="category_{{ catName }}">
             <div class="category">
                 <h1>
-                    <a href="{{ path("core_category_show", {'name': k} ) }}">{{ k }}</a>
+                    <a href="{{ path("core_category_show", {'name': catName} ) }}">{{ catName }}</a>
                 </h1>
             </div>
             <table class="jobs">
                 <tbody>
-            {% for job in v[0]  %}
+            {% for job in jobs  %}
                 <tr class="odd">
                     <td class="location">
                         {{ job.location }}
                     </td>
                     <td class="position">
-                        <a href="job.html">{{ job.position }}</a>
+                        <a href="{{ path('core_job_show', {id: job.id}) }}">{{ job.position }}</a>
                     </td>
                     <td class="company">
                         {{ job.company }}

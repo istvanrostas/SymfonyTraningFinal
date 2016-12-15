@@ -66,21 +66,28 @@ class Job extends Timestampable
 
     /**
      * @var string
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
     private $url;
 
     /**
      * @var string
-     * ORM\Column(name="email", type="string", length=255)
+     *
+     *@ORM\Column(name="description", type="string", length=200, nullable=true)
+     *
+     */
+    private $description;
+
+    /**
+     * @var string
+     * @ORM\Column(name="email", type="string", length=200)
      * @Assert\Email
      */
     private $email;
 
     /**
      * @var User
-     * ORM\Column(name="email", type="string", length=255)
      * @ORM\ManyToOne(targetEntity="User", inversedBy="jobs")
      * @Assert\Email
      */
@@ -263,8 +270,6 @@ class Job extends Timestampable
     }
 
 
-
-
     /**
      * Set category
      *
@@ -287,5 +292,29 @@ class Job extends Timestampable
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Job
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
