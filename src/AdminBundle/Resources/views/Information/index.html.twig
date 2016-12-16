@@ -1,0 +1,42 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Information list {% endblock %}
+
+{% block content %}
+    <h1>Information list</h1>
+
+    <table class="record_list">
+        <thead>
+        <tr>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Position on frontend</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for info in infos %}
+            <tr><td>{{ info.createdAt | date('Y-m-d H:i:s') }}</td>
+                <td>{% if info.updatedAt %}{{ info.updatedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><a href="{{ path('admin_information_edit', { 'id': info.id }) }}">{{  info.title }}</a></td>
+                <td>{{ info.description }}</td>
+                <td>{{ info.positionOnFrontend }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_information_edit', { 'id': info.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_information_new') }}">Create a new info site</a>
+        </li>
+    </ul>
+{% endblock %}

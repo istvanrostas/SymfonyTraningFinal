@@ -27,7 +27,7 @@ class Job extends Timestampable
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=15)
      * @Assert\NotBlank
      */
     private $type;
@@ -35,7 +35,7 @@ class Job extends Timestampable
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="location", type="string", length=100)
      * @Assert\NotBlank
      */
     private $location;
@@ -51,7 +51,7 @@ class Job extends Timestampable
     /**
      * @var string
      *
-     * @ORM\Column(name="company", type="string", length=255)
+     * @ORM\Column(name="company", type="string", length=100)
      * @Assert\NotBlank
      */
     private $company;
@@ -67,33 +67,47 @@ class Job extends Timestampable
     /**
      * @var string
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
-     * @Assert\NotBlank
+     *
      */
     private $url;
 
     /**
      * @var string
      *
-     *@ORM\Column(name="description", type="string", length=200, nullable=true)
-     *
+     *@ORM\Column(name="description", type="string", length=120, nullable=true)
+     *@Assert\Length(
+     *      min = 20,
+     *      max = 120,
+     *      minMessage = "The description must be at least {{ limit }} characters long",
+     *      maxMessage = "The description cannot be longer than {{ limit }} characters"
+     * )
      */
     private $description;
 
     /**
      * @var string
-     * @ORM\Column(name="email", type="string", length=200)
-     * @Assert\Email
+     * @ORM\Column(name="email", type="string", length=120)
+     * @Assert\NotBlank
      */
     private $email;
 
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="jobs")
-     * @Assert\Email
      */
     private $user;
 
-
+    /**
+     * @var string
+     * @ORM\Column(name="how_to_apply", type="string", length=120)
+     * @Assert\Length(
+     *      min = 20,
+     *      max = 120,
+     *      minMessage = "The 'How To Apply' field must be at least {{ limit }} characters long",
+     *      maxMessage = "The 'How To Apply' field cannot be longer than {{ limit }} characters"
+     * )
+     */
+    private $howToApply;
 
 
 
@@ -316,5 +330,29 @@ class Job extends Timestampable
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set howToApply
+     *
+     * @param string $howToApply
+     *
+     * @return Job
+     */
+    public function setHowToApply($howToApply)
+    {
+        $this->howToApply = $howToApply;
+
+        return $this;
+    }
+
+    /**
+     * Get howToApply
+     *
+     * @return string
+     */
+    public function getHowToApply()
+    {
+        return $this->howToApply;
     }
 }

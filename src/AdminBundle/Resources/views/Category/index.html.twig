@@ -1,0 +1,34 @@
+
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Category list {% endblock %}
+
+{% block content %}
+    <h1>Category list</h1>
+
+    <table class="record_list">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Created At</th>
+            <th>Update At</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cat in cats %}
+            <tr>
+                <td>{{ cat.name }}</td>
+                <td>{{ cat.createdAt | date('Y-m-d H:i:s') }}</td>
+                <td>{% if cat.updatedAt %}{{ cat.updatedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_category_edit', { 'id': cat.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}JobZ Admin login{% endblock %}
+
+{% block content %}
+
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('admin_security_login') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="_username" id="username" value="{{ last_username }}" />
+
+        <label for="password">Password:</label>
+        <input type="password" name="_password" id="password"  />
+
+        <input type="hidden" name="_target_path" value="{{ path('admin_category_index') }}" />
+
+        <button type="submit">login</button>
+    </form>
+
+{% endblock %}

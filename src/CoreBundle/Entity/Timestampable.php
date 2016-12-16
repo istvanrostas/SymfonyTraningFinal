@@ -8,6 +8,7 @@
 namespace CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Timestampable abstract class to define created and updated behavior
  *

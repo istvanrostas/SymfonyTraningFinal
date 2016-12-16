@@ -33,21 +33,7 @@ class User extends Timestampable  implements UserInterface, \Serializable
      */
     private $email;
 
-    /**
-     * @return mixed
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
 
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-    }
 
     /**
      * @Assert\NotBlank()
@@ -59,7 +45,7 @@ class User extends Timestampable  implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=64)
-     * @Assert\NotBlank
+     *
      */
     private $password;
 
@@ -78,6 +64,23 @@ class User extends Timestampable  implements UserInterface, \Serializable
      */
     private $jobs;
 
+
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
 
     /**
      * Get id
@@ -282,5 +285,10 @@ class User extends Timestampable  implements UserInterface, \Serializable
     public function eraseCredentials()
     {
 
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 }

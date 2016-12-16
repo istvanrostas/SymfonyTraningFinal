@@ -1,0 +1,52 @@
+
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Job list {% endblock %}
+
+{% block content %}
+    <h1>Job list</h1>
+
+    <table class="record_list">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>Created by</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Url</th>
+            <th>Description</th>
+            <th>Email</th>
+            <th>How to apply</th>
+            <th>Created At</th>
+            <th>Update At</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.category }}</td>
+                <td>{{ job.user }}</td>
+                <td>{{ job.type }}</td>
+                <td>{{ job.location }}</td>
+                <td>{{ job.position }}</td>
+                <td>{{ job.company }}</td>
+                <td>{{ job.url }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.email }}</td>
+                <td>{{ job.howToApply }}</td>
+                <td>{{ job.createdAt | date('Y-m-d H:i:s') }}</td>
+                <td>{% if job.updatedAt %}{{ job.updatedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_job_edit', { 'id': job.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

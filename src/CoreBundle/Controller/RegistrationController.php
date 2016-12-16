@@ -31,10 +31,10 @@ class RegistrationController extends Controller
 
             $this->get('session')->getFlashBag()->add('success', 'You\'ve been successfully registrated');
 
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('core_job_index');
         }
         return $this->render(
-            'CoreBundle::Registration/new.html.twig',
+            'CoreBundle:Registration:new.html.twig',
             array('form' => $form->createView())
         );
 

@@ -115,4 +115,9 @@ class Category extends Timestampable
     {
         return $this->jobs;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

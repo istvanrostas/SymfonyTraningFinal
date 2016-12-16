@@ -5,16 +5,10 @@
 {% block content %}
 
     <h1>
-        Registration
+        Post a New Job
     </h1>
 
     {{ form_start(form) }}
-
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
     <button type="submit">Submit</button>
-
     {{ form_end(form) }}
 {% endblock %}
